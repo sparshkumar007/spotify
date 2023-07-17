@@ -2,7 +2,7 @@ const express=require('express');
 
 const fetchUser=async (req,res,next) => {
     const auth_token=req.access_token;
-    const user_id=req.body.user;
+    const user_id=req.header('user');
     try {
         const response=await fetch(`https://api.spotify.com/v1/users/${user_id}`,{
             method: 'GET',

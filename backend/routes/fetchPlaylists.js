@@ -33,9 +33,11 @@ router.get('/all',fetchToken,async (req,res) => {
         playlists.items.map((playlist) => {
             names.push(playlist.name);
         })
+        // console.log(names);
         res.send({
             'playlists': names
         });
+        // res.send(playlists);
     } catch (error) {
         console.error(error.message);
         res.status(400).send("Internal Server Error");
@@ -46,7 +48,7 @@ router.get('/all',fetchToken,async (req,res) => {
 router.post('/save',fetchToken,fetchUser,async (req,res) => {
 
     const user_name=req.user;
-    const playlist=req.body.playlist;
+    const playlist=req.header('playlist');
     try {
         const entry=new Playlist({
             playlist,user: user_name
