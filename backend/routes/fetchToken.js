@@ -1,7 +1,6 @@
 const express=require('express');
 const router=express.Router();
-const CLIENT_ID='15e9bae708364344a69e463f94fe1985';
-const CLIENT_SECRET='db5cab51495a46b2a69d7f9eca957910';
+const { CLIENT_ID,CLIENT_SECRET }=require('../data');
 
 // Router 1:getting token using /api/token/refreshToken
 router.get('/getToken',async (req,res) => {

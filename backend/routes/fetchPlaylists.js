@@ -1,11 +1,11 @@
 const express=require('express');
 const router=express.Router();
 const Playlist=require('../models/Playlist');
+const { auth_token }=require('../data');
 
 // Router 1:getting all playlists of user from spotify api using /api/playlists/all
 router.get('/all',async (req,res) => {
     const user_id=req.header('user_id');
-    const auth_token=req.header('auth-token');
     try {
         const response=await fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`,{
             method: 'GET',
