@@ -9,6 +9,7 @@ function App() {
     const Navigate=useNavigate();
     const [Data,setData]=useState([]);
     const user_id='m8wmw14hbql9teek767hzs5ru';
+    // const user_id=props.id;
     const fetchData=async () => {
         return await fetch("http://localhost:5000/api/playlists/all",{
             // mode: "no-cors",
