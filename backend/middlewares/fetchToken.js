@@ -1,9 +1,8 @@
 const express=require('express');
-const router=express.Router();
 const { CLIENT_ID,CLIENT_SECRET }=require('../data');
 
 // Router 1:getting token using /api/token/refreshToken
-router.get('/getToken',async (req,res) => {
+const fetchToken=async (req,res,next) => {
 
     try {
         const response=await fetch('https://accounts.spotify.com/api/token',{
@@ -14,14 +13,15 @@ router.get('/getToken',async (req,res) => {
             body: `grant_type=client_credentials&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`,
         });
         const token=await response.json();
-        res.send({
-            'access_token': token
-        });
+        req.access_token=token.access_token;
+        next();
     } catch (error) {
         console.error(error.message);
         res.status(400).send("Internal Server Error");
     }
-})
+}
+
+module.exports=fetchToken;
 
 // Router 2:refreshing token using /api/token/refreshToken
 // router.get('/refreshToken',async (req,res) => {
@@ -50,4 +50,4 @@ router.get('/getToken',async (req,res) => {
 //     });
 // })
 
-module.exports=router;
+// module.exports=router;

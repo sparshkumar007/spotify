@@ -1,11 +1,26 @@
 const express=require('express');
 const router=express.Router();
 const Playlist=require('../models/Playlist');
-const { auth_token }=require('../data');
+const { CLIENT_ID,CLIENT_SECRET }=require('../data');
+const fetchToken=require('../middlewares/fetchToken');
+const fetchUser=require('../middlewares/fetchUser');
 
 // Router 1:getting all playlists of user from spotify api using /api/playlists/all
-router.get('/all',async (req,res) => {
+router.get('/all',fetchToken,async (req,res) => {
+
+    // working for auth_token
+    // const response=await fetch('https://accounts.spotify.com/api/token',{
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/x-www-form-urlencoded',
+    //     },
+    //     body: `grant_type=client_credentials&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`,
+    // });
+    // const token=await response.json();
+
     const user_id=req.header('user_id');
+    const auth_token=req.access_token;
+
     try {
         const response=await fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`,{
             method: 'GET',
@@ -28,12 +43,13 @@ router.get('/all',async (req,res) => {
 })
 
 // router 2: saving playlist in db using /api/playlists/save
-router.post('/save',async (req,res) => {
+router.post('/save',fetchToken,fetchUser,async (req,res) => {
+
+    const user_name=req.user;
     const playlist=req.body.playlist;
-    const user=req.body.user;
     try {
         const entry=new Playlist({
-            playlist,user
+            playlist,user: user_name
         })
         const savedEntry=await entry.save();
         res.send(savedEntry);

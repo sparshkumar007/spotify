@@ -6,7 +6,7 @@ const app=express()
 const port=5000
 
 app.use(express.json());
-app.use('/api/token/',require('./routes/fetchToken'));
+// app.use('/api/token/',require('./routes/fetchToken'));
 app.use('/api/playlists/',require('./routes/fetchPlaylists'));
 
 app.listen(port,() => {
