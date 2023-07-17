@@ -2,6 +2,7 @@
 
 /backend/data.js
 /backend/db.js
+/backend/data.txt
 # dependencies
 /node_modules
 /.pnp
