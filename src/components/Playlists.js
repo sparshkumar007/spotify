@@ -1,15 +1,17 @@
-import React,{ useEffect,useState } from "react";
-import { Link } from "react-router-dom";
+import React,{ useEffect,useState,useContext } from "react";
+import { Link,Navigate } from "react-router-dom";
 import SavedData from './SavedData';
 import { useNavigate } from 'react-router-dom';
+import MyContext from '../context/createContext'
 
 
 
 function App() {
-    // const Navigate=useNavigate();
+    const context=useContext(MyContext);
+    const { Id,setId }=context;
+    const Navigate=useNavigate();
     const [Data,setData]=useState([]);
-    const user_id='m8wmw14hbql9teek767hzs5ru';
-    // const user_id=props.id;
+    const user_id=Id;
     const fetchData=async () => {
         return await fetch("http://localhost:5000/api/playlists/all",{
             // mode: "no-cors",
@@ -38,7 +40,9 @@ function App() {
                                     "playlist": playlist,
                                     "user": user_id
                                 }
-                            }).then((response) => response.json()).then();
+                            }).then((response) => response.json()).then(() => {
+                                Navigate('/');
+                            });
                         }}>{playlist}</button>
                     </li>
                 ))}

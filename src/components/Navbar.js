@@ -1,7 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React,{ useContext } from 'react'
+import { Link,Navigate } from 'react-router-dom'
+import MyContext from '../context/createContext'
+// import { stringify } from 'query-string/base';
+// import queryString from 'query-string';
+/* global document */
 
 const Navbar=() => {
+    const context=useContext(MyContext);
+    const { Id,setId }=context;
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -19,6 +25,12 @@ const Navbar=() => {
                                 <Link className="nav-link active" to="/user_playlists">User's Playlist</Link>
                             </li>
                         </ul>
+                        <input className="form-control me-2" type="text" placeholder="End UserId" id="user_id" />
+                        <button className="btn btn-outline-success" onClick={() => {
+                            setId(document.getElementById('user_id').value);
+                        }}>
+                            Enter</button>
+
                     </div>
                 </div>
             </nav>
