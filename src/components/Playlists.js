@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 function App() {
-    const Navigate=useNavigate();
+    // const Navigate=useNavigate();
     const [Data,setData]=useState([]);
     const user_id='m8wmw14hbql9teek767hzs5ru';
     // const user_id=props.id;
@@ -38,8 +38,7 @@ function App() {
                                     "playlist": playlist,
                                     "user": user_id
                                 }
-                            }).then((response) => response.json()).then(
-                                Navigate('/'));
+                            }).then((response) => response.json()).then();
                         }}>{playlist}</button>
                     </li>
                 ))}

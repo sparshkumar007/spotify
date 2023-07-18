@@ -16,7 +16,7 @@ const App=() => {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/saved_data" element={<SavedData />} />
           <Route exact path="/user_playlists" element={<Playlist />} />
-          {/* <Route exact path="/save_data" element={<SavePlaylist playlist="abcd" user="Sparsh" />} /> */}
+          <Route exact path="/save_data" element={<SavePlaylist playlist="abcd" user="Sparsh" />} />
         </Routes>
       </Router>
     </div>

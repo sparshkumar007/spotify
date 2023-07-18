@@ -10,8 +10,8 @@ export default function Home() {
                 <input type="text" className="form-control" id="user_id" placeholder="User ID" />
             </div>
             <div className="d-grid gap-2 col-6 mx-auto">
-                <button className="btn btn-primary" type="button" onClick={() => { Navigate(`/user_playlists`) }}>Your Playlists</button>
-                <button className="btn btn-primary" type="button" onClick={() => { Navigate(`/saved_data/`) }}>Saved Data of all Users</button>
+                <button className="btn btn-primary" type="button" onClick={() => { Navigate('/user_playlists') }}>Your Playlists</button>
+                <button className="btn btn-primary" type="button" onClick={() => { Navigate('/saved_data') }}>Saved Data of all Users</button>
             </div>
         </div>
     )
