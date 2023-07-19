@@ -28,7 +28,7 @@ function App() {
 
     return (
         <main>
-            <h1>Playlists</h1>
+            <h1>Select a playlist</h1>
             <ul>
                 {Data&&Data.length>0&&Data.map((playlist) => (
                     <li key={playlist} className="my-1">

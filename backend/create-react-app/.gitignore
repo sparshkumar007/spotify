@@ -1,17 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-/backend/data.js
-/backend/db.js
-/backend/data.txt
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
+
 # testing
 /coverage
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -24,4 +23,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Environment Variables
+.env
+.env.build
 .vercel
